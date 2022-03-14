@@ -16,30 +16,11 @@ void Input()
 {
 	cin >> N >> M;
 	cin >> pos_x >> pos_y >> dir;
+
 	for (int i = 0; i < N; i++)
-	{
 		for (int j = 0; j < M; j++)
-		{
 			cin >> map[i][j];
-		}
-	}
 }
-
-void Print()
-{
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			cout << map[i][j] << " ";
-		}
-		cout << '\n';
-	}
-}
-
-//	0북
-//3서  1동		 
-//	2남
 
 void GetNextDirPos(int next_dir, int& next_x, int& next_y)
 {
@@ -72,10 +53,8 @@ void Solve()
 	{
 		rot_cnt = 0;
 
-		// 현 위치 청소
 		if (cleared[pos_x][pos_y] == false)
 		{
-			//cout << "청소한 좌표 x: " << pos_x << " y: " << pos_y << '\n';
 			cleared[pos_x][pos_y] = true;
 			clear_cnt++;
 		}
@@ -86,23 +65,16 @@ void Solve()
 		
 		while (IsCleared(pos_x + next_x, pos_y + next_y) == true)
 		{
-			if (pos_x == 2 && pos_y == 1)
-			{
-				//cout << "next_x: " << pos_x + next_x << " next_y: " << pos_y + next_y << '\n';
-			}
 			rot_cnt++;
 			dir = (dir + 4 - 1) % 4;
 			
-			if (rot_cnt == 4) // c
+			if (rot_cnt == 4) 
 			{
-				// 바라보는 방향 유지한 채로 한 칸 후진
 				int next_x = 0, next_y = 0;
 				GetBackDirPos(dir, next_x, next_y);
 
 				if (map[pos_x + next_x][pos_y + next_y] == 1)
-				{
 					return;
-				}
 
 				pos_x += next_x;
 				pos_y += next_y;
@@ -123,17 +95,12 @@ void Solve()
 
 int main()
 {
-	dir = 0;
-
-	dir = ((dir + 4) - 1) % 4;
-
 	ios_base::sync_with_stdio(0); 
 	cin.tie(0);
 
 	Input();
 	Solve();
 	cout << clear_cnt;
-	//Print();
 
 	return 0;
 }
