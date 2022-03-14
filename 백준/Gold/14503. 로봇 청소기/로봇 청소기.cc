@@ -11,6 +11,7 @@ int pos_x, pos_y, dir;
 int map[51][51];
 bool cleared[51][51];
 int clear_cnt = 0;
+int rot_x_y[2][4] = { { -1, 0, 1, 0 }, {0, 1, 0, -1} };
 
 void Input()
 {
@@ -20,14 +21,6 @@ void Input()
 	for (int i = 0; i < N; i++)
 		for (int j = 0; j < M; j++)
 			cin >> map[i][j];
-}
-
-void GetNextDirPos(int next_dir, int& next_x, int& next_y)
-{
-	if (next_dir == 0) next_x--;
-	else if (next_dir == 1) next_y++;
-	else if (next_dir == 2) next_x++;
-	else next_y--;
 }
 
 bool IsCleared(int next_x, int next_y)
@@ -47,39 +40,31 @@ void Solve()
 
 		int rot_cnt = 0;
 		int next_dir = (dir + 4 - 1) % 4;
-		int next_x = 0, next_y = 0;
 
-		GetNextDirPos(next_dir, next_x, next_y);
-
-		while (IsCleared(pos_x + next_x, pos_y + next_y) == true)
+		while (IsCleared(pos_x + rot_x_y[0][next_dir], pos_y + rot_x_y[1][next_dir]) == true)
 		{
 			rot_cnt++;
 			dir = (dir + 4 - 1) % 4;
 
 			if (rot_cnt == 4)
 			{
-				int nx = 0, ny = 0;
-				GetNextDirPos((dir + 4 - 2) % 4, nx, ny);
-
-				if (map[pos_x + nx][pos_y + ny] == 1)
+				int tmp_dir = (dir + 4 - 2) % 4;
+				if (map[pos_x + rot_x_y[0][tmp_dir]][pos_y + rot_x_y[1][tmp_dir]] == 1)
 				{
 					cout << clear_cnt;
 					return;
 				}
 
-				pos_x += nx;
-				pos_y += ny;
+				pos_x += rot_x_y[0][tmp_dir];
+				pos_y += rot_x_y[1][tmp_dir];
 				rot_cnt = 0;
 			}
 
 			next_dir = (dir + 4 - 1) % 4;
-			next_x = 0;
-			next_y = 0;
-			GetNextDirPos(next_dir, next_x, next_y);
 		}
 
-		pos_x += next_x;
-		pos_y += next_y;
+		pos_x += rot_x_y[0][next_dir];
+		pos_y += rot_x_y[1][next_dir];
 		dir = (dir + 4 - 1) % 4;
 	}
 }
