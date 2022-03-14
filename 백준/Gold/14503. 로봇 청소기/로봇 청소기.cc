@@ -30,14 +30,6 @@ void GetNextDirPos(int next_dir, int& next_x, int& next_y)
 	if (next_dir == 3) next_y--;
 }
 
-void GetBackDirPos(int now_dir, int& next_x, int& next_y)
-{
-	if (now_dir == 0) next_x++;
-	if (now_dir == 1) next_y--;
-	if (now_dir == 2) next_x--;
-	if (now_dir == 3) next_y++;
-}
-
 bool IsCleared(int next_x, int next_y)
 {
 	if (map[next_x][next_y] == 1 || cleared[next_x][next_y] == true) return true;
@@ -71,7 +63,7 @@ void Solve()
 			if (rot_cnt == 4) 
 			{
 				int next_x = 0, next_y = 0;
-				GetBackDirPos(dir, next_x, next_y);
+				GetNextDirPos((dir+4-2) % 4, next_x, next_y);
 
 				if (map[pos_x + next_x][pos_y + next_y] == 1)
 					return;
