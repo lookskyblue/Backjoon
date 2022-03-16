@@ -52,7 +52,6 @@ void Solve()
 
 	while (++time)
 	{
-		// 1. 몸 늘려
 		int head_x = body.back().first;
 		int head_y = body.back().second;
 		
@@ -60,34 +59,25 @@ void Solve()
 		head_y += dy[dir];
 
 		if (head_x < 1 || head_x > N || head_y < 1 || head_y > N || map[head_x][head_y] == ME)
-		{
 			break;
-		}
 
-		body.push_back({ head_x, head_y }); // 일단 전진했으니 가장 앞 머리 넣어.
+		body.push_back({ head_x, head_y });
 
-		// 1.1 사과 있다면 사과 없애고 꼬리는 그대로
-		if (map[head_x][head_y] == APPLE) map[head_x][head_y] = ME;
-
-		// 1.2 사과 없다면 꼬리칸 비워
-		else
+		if(map[head_x][head_y] == EMPTY) // 사과가 없다면
 		{
 			int tail_x = body.front().first;
 			int tail_y = body.front().second;
-			body.pop_front();
 
+			body.pop_front();
 			map[tail_x][tail_y] = EMPTY;
-			map[head_x][head_y] = ME;
 		}
 
-		// 2. 방향 전환 체크
-		if (rot.size() != 0 && rot.front().first == time)
-		{
-			char rot_info = rot.front().second;
-			rot.pop();
+		map[head_x][head_y] = ME;
 
-			if (rot_info == 'D') dir = ((dir + 4) + 1) % 4;
-			else dir = ((dir + 4) - 1) % 4;
+		if (rot.size() != 0 && rot.front().first == time) // 2. 방향 전환 체크
+		{
+			dir = (rot.front().second == 'D') ? ((dir + 4 + 1) % 4) : ((dir + 4 - 1) % 4);
+			rot.pop();
 		}
 	}
 
