@@ -20,8 +20,7 @@ string IsVPS(string ps)
 		}
 	}
 
-	if (s.empty() == false) return "NO";
-	return "YES";
+	return s.empty() == true ? "YES" : "NO";
 }
 
 void Solve()
@@ -32,8 +31,8 @@ void Solve()
 	for (int i = 0; i < T; i++)
 	{
 		string ps;
-		cin >> ps;
 
+		cin >> ps;
 		cout << IsVPS(ps) << '\n';
 	}
 }
