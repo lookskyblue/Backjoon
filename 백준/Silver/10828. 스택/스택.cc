@@ -35,16 +35,8 @@ void Solve()
 			}
 		}
 
-		else if (order == "size")
-		{
-			cout << s.size() << '\n';
-		}
-
-		else if (order == "empty")
-		{
-			cout << s.empty() << '\n';
-		}
-
+		else if (order == "size") cout << s.size() << '\n';
+		else if (order == "empty") cout << s.empty() << '\n';
 		else if (order == "top")
 		{
 			if (s.empty() == true) cout << -1 << '\n';
