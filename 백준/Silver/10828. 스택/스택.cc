@@ -1,16 +1,15 @@
 #include <iostream>
 #include <deque>
 #include <queue>
+#include <stack>
 #include <algorithm>
 
 using namespace std;
 
-int const MAX_SIZE = 10000;
-int stack[MAX_SIZE];
-int point = -1;
 
 void Solve()
 {
+	stack<int> s;
 	int N;
 	cin >> N;
 
@@ -23,35 +22,33 @@ void Solve()
 		{
 			int x;
 			cin >> x;
-
-			stack[++point] = x;
+			s.push(x);
 		}
 
 		else if (order == "pop")
 		{
-			if (point == -1) cout << -1 << '\n';
+			if (s.empty() == true) cout << -1 << "\n";
 			else
 			{
-				int top_value = stack[point--];
-				cout << top_value << '\n';
+				cout << s.top() << "\n";
+				s.pop();
 			}
 		}
 
 		else if (order == "size")
 		{
-			cout << point + 1 << '\n';
+			cout << s.size() << '\n';
 		}
 
 		else if (order == "empty")
 		{
-			if (point == -1) cout << 1 << '\n';
-			else cout << 0 << '\n';
+			cout << s.empty() << '\n';
 		}
 
 		else if (order == "top")
 		{
-			if (point == -1) cout << -1 << '\n';
-			else cout << stack[point] << '\n';
+			if (s.empty() == true) cout << -1 << '\n';
+			else cout << s.top() << '\n';
 		}
 	}
 }
