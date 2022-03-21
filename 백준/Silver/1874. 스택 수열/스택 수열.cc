@@ -14,8 +14,7 @@ void Solve()
 	int N;
 	cin >> N;
 
-	for (int i = 0; i < N; i++)
-		cin >> arr[i];
+	for (int i = 0; i < N; i++) cin >> arr[i];
 
 	int x = 1;
 	int idx = 0;
@@ -23,21 +22,21 @@ void Solve()
 	
 	s.push(x);
 	op.push("+");
+
 	while (1)
 	{
 		if (s.top() == arr[idx])
 		{
 			op.push("-");
 			s.pop();
-			idx++;
 
-			if (idx == N) break;
+			if (++idx == N) break;
+		}
 
-			if (s.empty() == true)
-			{
-				op.push("+");
-				s.push(++x);
-			}
+		if (s.empty() == true)
+		{
+			op.push("+");
+			s.push(++x);
 		}
 
 		if (s.top() < arr[idx])
