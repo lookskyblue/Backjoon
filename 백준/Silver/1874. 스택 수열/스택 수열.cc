@@ -1,52 +1,40 @@
 #include <iostream>
 #include <queue>
+#include <deque>
 #include <stack>
 #include <algorithm>
 
 using namespace std;
 
-int N, K;
-int arr[100000];
-string ans;
-
 void Solve()
 {
-	int N;
-	cin >> N;
+	int n;
+	cin >> n;
 
-	for (int i = 0; i < N; i++)
-		cin >> arr[i];
-
-	int x = 1;
-	int idx = 0;
+	string ans = "";
 	stack<int> s;
-	
-	s.push(x);
-	ans += "+";
 
-	while (1)
+	int num = 0;
+	s.push(num);
+
+	for (int i = 0; i < n; i++)
 	{
-		if (s.top() == arr[idx])
+		int x;
+		cin >> x;
+
+		while (s.top() < x)
 		{
-			ans += "-";
+			s.push(++num);
+			ans += "+";
+		}
+
+		if (s.top() == x)
+		{
 			s.pop();
-
-			if (++idx == N) break;
+			ans += "-";
 		}
 
-		if (s.empty() == true)
-		{
-			ans += "+";
-			s.push(++x);
-		}
-
-		if (s.top() < arr[idx])
-		{
-			s.push(++x);
-			ans += "+";
-		}
-
-		else if (s.top() > arr[idx])
+		else if (s.top() > x)
 		{
 			cout << "NO";
 			return;
