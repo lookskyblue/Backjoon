@@ -9,8 +9,7 @@
 using namespace std;
 
 int N, M;
-set<string> s;
-vector<string> common;
+vector<string> nv, common;
 
 void Solve()
 {
@@ -21,15 +20,17 @@ void Solve()
 		string tmp;
 		cin >> tmp;
 
-		s.insert(tmp);
+		nv.push_back(tmp);
 	}
+
+	sort(nv.begin(), nv.end());
 
 	for (int i = 0; i < M; i++)
 	{
 		string tmp;
-		cin >> tmp; 
+		cin >> tmp;
 
-		if (s.find(tmp) != s.end())
+		if (binary_search(nv.begin(), nv.end(), tmp) == true)
 			common.push_back(tmp);
 	}
 
