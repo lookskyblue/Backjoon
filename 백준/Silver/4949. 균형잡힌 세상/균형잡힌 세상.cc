@@ -19,14 +19,14 @@ string IsBalanceStr(string str)
 
 		else if (str[i] == ')')
 		{
-			if (s.empty() == true || s.top() != '(') return "no";
-			else if (s.top() == '(') s.pop();
+			if (s.empty() == true || s.top() == '[') return "no";
+			else s.pop();
 		}
 
 		else if (str[i] == ']')
 		{
-			if (s.empty() == true || s.top() != '[') return "no";
-			else if (s.top() == '[') s.pop();
+			if (s.empty() == true || s.top() == '(') return "no";
+			else s.pop();
 		}
 	}
 }
