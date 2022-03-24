@@ -33,19 +33,14 @@ string IsBalanceStr(string str)
 
 void Solve()
 {
-	string str;
-
 	while (1)
 	{
-		//string tmp;
-
+		string str;
 		getline(cin, str);
-		///str += tmp;
 
 		if (str.size() == 1) break;
 
 		cout << IsBalanceStr(str) << "\n";
-		str = "";
 	}
 }
 
