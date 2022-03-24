@@ -30,9 +30,7 @@ void Solve()
 		cin >> tmp; 
 
 		if (s.find(tmp) != s.end())
-		{
 			common.push_back(tmp);
-		}
 	}
 
 	sort(common.begin(), common.end());
@@ -40,9 +38,7 @@ void Solve()
 	cout << common.size() << "\n";
 
 	for (int i = 0; i < common.size(); i++)
-	{
 		cout << common[i] << "\n";
-	}
 }
 
 int main()
