@@ -9,23 +9,17 @@ void Solve()
 {
 	int N, M;
 	cin >> N >> M;
-	vector<int> q, pos;
+	vector<int> q;
 
 	for (int i = 0; i < N; i++)
 		q.push_back(i + 1);
 
-	for (int i = 0; i < M; i++)
+	int count_two_or_three_order = 0;
+
+	while(M--)
 	{
 		int x;
 		cin >> x;
-		pos.push_back(x);
-	}
-
-	int count_two_or_three_order = 0;
-
-	for (int i = 0; i < pos.size(); i++)
-	{
-		int x = pos[i];
 
 		if (q[0] == x)
 			q.erase(q.begin());
@@ -49,9 +43,9 @@ void Solve()
 				{
 					q.push_back(q[0]);
 					q.erase(q.begin());
-
 					count_two_or_three_order++;
 				}
+
 				q.erase(q.begin());
 			}
 
@@ -60,11 +54,10 @@ void Solve()
 				while (q[0] != x)
 				{
 					q.insert(q.begin(), q[q.size() - 1]);
-					//q.erase(q.end());
-					q.erase(q.begin() + q.size() - 1);
-
+					q.erase(q.end() - 1);
 					count_two_or_three_order++;
 				}
+
 				q.erase(q.begin());
 			}
 		}
