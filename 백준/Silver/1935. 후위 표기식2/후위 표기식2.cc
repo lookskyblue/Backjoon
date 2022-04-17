@@ -11,9 +11,9 @@ stack<double> s;
 double Calculate(double a, double b, char letter)
 {
 	if (letter == '*') return a * b;
-	else if (letter == '/') return a / b;
-	else if (letter == '+') return a + b;
-	else if (letter == '-') return a - b;
+	if (letter == '/') return a / b;
+	if (letter == '+') return a + b;
+	if (letter == '-') return a - b;
 }
 
 void Solve(string str)
