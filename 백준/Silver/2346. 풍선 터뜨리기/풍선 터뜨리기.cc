@@ -18,22 +18,12 @@ void Solve()
 	{
 		if (0 < card_num) // 양수
 		{
-			//cout << "CAR NUM: " << card_num << '\n';
 			for (int i = 0; i < card_num - 1; i++)
 			{
 				pair<int, int> tmp = dq.front();
 				dq.pop_front();
 				dq.push_back(tmp);
-
-				//cout << "TEST: " << tmp.first << '\n';
 			}
-
-			pair<int, int> tmp = dq.front();
-			dq.pop_front();
-
-			cout << tmp.first << " ";
-
-			card_num = tmp.second;
 		}
 
 		else
@@ -44,14 +34,12 @@ void Solve()
 				dq.pop_back();
 				dq.push_front(tmp);
 			}
-
-			pair<int, int> tmp = dq.front();
-			dq.pop_front();
-
-			cout << tmp.first << " ";
-
-			card_num = tmp.second;
 		}
+
+		pair<int, int> tmp = dq.front();
+		dq.pop_front();
+		cout << tmp.first << " ";
+		card_num = tmp.second;
 	}
 }
 
