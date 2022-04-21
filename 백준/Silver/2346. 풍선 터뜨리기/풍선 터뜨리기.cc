@@ -7,15 +7,16 @@ deque<pair<int, int>> dq;
 
 void Solve()
 {
-	pair<int, int> tmp = dq.front();
-	dq.pop_front();
-	int idx = tmp.first;
-	int card_num = tmp.second;
-
-	cout << idx << " ";
-
 	while (dq.empty() == false)
 	{
+		pair<int, int> tmp = dq.front();
+		dq.pop_front();
+		cout << tmp.first << " ";
+		int card_num = tmp.second;
+
+		if (dq.empty() == true)
+			return;
+
 		if (0 < card_num) // 양수
 		{
 			for (int i = 0; i < card_num - 1; i++)
@@ -36,10 +37,6 @@ void Solve()
 			}
 		}
 
-		pair<int, int> tmp = dq.front();
-		dq.pop_front();
-		cout << tmp.first << " ";
-		card_num = tmp.second;
 	}
 }
 
