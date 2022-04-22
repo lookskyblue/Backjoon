@@ -14,8 +14,6 @@ map<string, int> tree_m;
 
 void Input()
 {
-	cout << fixed;
-
 	int n = 0;
 	int total_tree = 0;
 	string tree;
@@ -31,8 +29,6 @@ void Input()
 			tree_m.insert({ tree, 1 });
 
 		total_tree++;
-
-		//if (getchar() == 'a') break;
 	}
 
 	int tree_m_size = tree_m.size();
@@ -41,7 +37,8 @@ void Input()
 	{
 		double percentage = ((double)itr->second / total_tree) * 100;
 		percentage = round(percentage * 10000) / 10000;
-
+		
+		cout << fixed;
 		cout.precision(4);
 
 		cout << itr->first << " " << percentage << '\n';
