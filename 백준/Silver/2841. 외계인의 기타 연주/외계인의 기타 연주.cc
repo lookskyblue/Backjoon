@@ -38,9 +38,9 @@ void Input()
 				answer++;
 			}
 
-			else if(s[idx].top() > plat) // 최신 플랫이 더 낮다면
+			else if (s[idx].top() > plat) // 최신 플랫이 더 낮다면
 			{
-				while (s[idx].empty() == false) 
+				while (s[idx].empty() == false && s[idx].top() != plat)
 				{
 					if (s[idx].top() > plat)
 					{
@@ -54,9 +54,6 @@ void Input()
 							break;
 						}
 					}
-
-					else if (s[idx].top() == plat)
-						break;
 
 					else
 					{
