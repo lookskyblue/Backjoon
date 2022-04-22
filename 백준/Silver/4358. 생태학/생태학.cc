@@ -10,7 +10,7 @@
 
 using namespace std;
 
-map<string, int> tree_m;
+map<string, float> tree_m;
 
 void Input()
 {
@@ -20,27 +20,16 @@ void Input()
 
 	while (getline(cin, tree))
 	{
-		map<string, int>::iterator itr = tree_m.find(tree);
-
-		if (itr != tree_m.end())
-			itr->second++;
-
-		else
-			tree_m.insert({ tree, 1 });
-
+		tree_m[tree]++;
 		total_tree++;
 	}
 
-	int tree_m_size = tree_m.size();
-
-	for (map<string, int>::iterator itr = tree_m.begin(); itr != tree_m.end(); itr++)
+	for (map<string, float>::iterator itr = tree_m.begin(); itr != tree_m.end(); itr++)
 	{
-		double percentage = ((double)itr->second / total_tree) * 100;
-		percentage = round(percentage * 10000) / 10000;
-		
+		float percentage = (itr->second / total_tree) * 100;
+
 		cout << fixed;
 		cout.precision(4);
-
 		cout << itr->first << " " << percentage << '\n';
 	}
 }
