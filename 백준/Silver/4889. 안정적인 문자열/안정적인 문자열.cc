@@ -29,13 +29,8 @@ void Solve(string str, int t)
 
 		else
 		{
-			if (str[i] == '}')
-			{
-				s.pop();
-			}
-
-			else
-				s.push('{');
+			if (str[i] == '}') s.pop();
+			else s.push('{');
 		}
 	}
 
@@ -58,7 +53,6 @@ void Input()
 	while (getline(cin, str))
 	{
 		if (str[0] == '-') break;
-		
 		Solve(str, ++t);
 	}
 }
