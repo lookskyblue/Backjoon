@@ -24,9 +24,7 @@ void Solve()
 	vector<pair<int, pair<int, int>>> v;
 
 	for (auto it = frequency.begin(); it != frequency.end(); it++)
-	{
 		v.push_back(make_pair(it->first, it->second));
-	}
 
 	sort(v.begin(), v.end(), cmp);
 
@@ -35,9 +33,7 @@ void Solve()
 		int loop_count = v[i].second.first;
 
 		for (int j = 0; j < loop_count; j++)
-		{
 			cout << v[i].first << ' ';
-		}
 	}
 }
 
@@ -53,10 +49,8 @@ void Input()
 
 		map<int, pair<int, int>>::iterator itr = frequency.find(x);
 
-		if (itr == frequency.end())
-			frequency.insert({ x, {1, i} });
-		else
-			itr->second.first++;
+		if (itr == frequency.end()) frequency.insert({ x, {1, i} });
+		else itr->second.first++;
 	}
 
 	Solve();
