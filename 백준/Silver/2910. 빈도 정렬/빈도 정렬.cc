@@ -15,22 +15,12 @@ map<int, pair<int, int>> frequency;
 bool cmp(const pair<int, pair<int, int>> &a, const pair<int, pair<int, int>> &b)
 {
 	if (a.second.first < b.second.first) return false;
-	else if (a.second.first == b.second.first)
-	{
-		if (a.second.second > b.second.second)
-			return false;
-	}
-
+	else if (a.second.first == b.second.first && a.second.second > b.second.second) return false;
 	return true;
 }
 
 void Solve()
 {
-	/*for (map<int, pair<int, int>>::iterator itr = frequency.begin(); itr != frequency.end(); itr++)
-	{
-		cout << "값: " << itr->first << ", 빈도: " << itr->second.first << ", 순서: " << itr->second.second << '\n';
-	}*/
-
 	vector<pair<int, pair<int, int>>> v;
 
 	for (auto it = frequency.begin(); it != frequency.end(); it++)
