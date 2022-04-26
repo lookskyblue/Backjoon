@@ -21,6 +21,7 @@ public:
 
 	void SetLeft(Node* node) { left = node; }
 	void SetRight(Node* node) { right = node; }
+	void SetData(char d) { data = d; }
 	Node* GetLeft() { return left; }
 	Node* GetRight() { return right; }
 	char GetData() { return data; }
@@ -80,40 +81,31 @@ void Input()
 		char now_data, left_data, right_data;
 		cin >> now_data >> left_data >> right_data;
 
-		Node* node = new Node(now_data);
-		Node* left_node = new Node(left_data);
-		Node* right_node = new Node(right_data);
+		if (tree.nodes[now_data - 'A'] == nullptr)
+			tree.nodes[now_data - 'A'] = new Node(now_data);
 
 		if (tree.nodes[left_data - 'A'] == nullptr)
-			tree.nodes[left_data - 'A'] = left_node;
-		else
-			left_node = tree.nodes[left_data - 'A'];
+			tree.nodes[left_data - 'A'] = new Node(left_data);
 
 		if (tree.nodes[right_data - 'A'] == nullptr)
-			tree.nodes[right_data - 'A'] = right_node;
-		else
-			right_node = tree.nodes[right_data - 'A'];
+			tree.nodes[right_data - 'A'] = new Node(right_data);
 
 		if (now_data == 'A' && tree.GetRoot() == nullptr)
-			tree.SetRoot(node);
+			tree.SetRoot(tree.nodes[now_data - 'A']);
 
-		if (tree.nodes[now_data - 'A'] == nullptr)
-			tree.nodes[now_data - 'A'] = node;
-		
-		else
-			node = tree.nodes[now_data - 'A'];
+		tree.nodes[now_data - 'A']->SetData(now_data);
 
 		if (left_data == '.')
-			node->SetLeft(nullptr);
-
+			tree.nodes[now_data - 'A']->SetLeft(nullptr);
 		else
-			node->SetLeft(left_node);
+			tree.nodes[now_data - 'A']->SetLeft(tree.nodes[left_data - 'A']);
 
 		if (right_data == '.')
-			node->SetRight(nullptr);
-
+			tree.nodes[now_data - 'A']->SetRight(nullptr);
 		else
-			node->SetRight(right_node);
+			tree.nodes[now_data - 'A']->SetRight(tree.nodes[right_data - 'A']);
+
+
 	}
 
 	tree.PreOrder(tree.GetRoot());
