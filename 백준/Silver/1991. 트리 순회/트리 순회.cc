@@ -84,6 +84,16 @@ void Input()
 		Node* left_node = new Node(left_data);
 		Node* right_node = new Node(right_data);
 
+		if (tree.nodes[left_data - 'A'] == nullptr)
+			tree.nodes[left_data - 'A'] = left_node;
+		else
+			left_node = tree.nodes[left_data - 'A'];
+
+		if (tree.nodes[right_data - 'A'] == nullptr)
+			tree.nodes[right_data - 'A'] = right_node;
+		else
+			right_node = tree.nodes[right_data - 'A'];
+
 		if (now_data == 'A' && tree.GetRoot() == nullptr)
 			tree.SetRoot(node);
 
@@ -97,27 +107,13 @@ void Input()
 			node->SetLeft(nullptr);
 
 		else
-		{
-			if (tree.nodes[left_data - 'A'] == nullptr)
-				tree.nodes[left_data - 'A'] = left_node;
-			else
-				left_node = tree.nodes[left_data - 'A'];
-
 			node->SetLeft(left_node);
-		}
 
 		if (right_data == '.')
 			node->SetRight(nullptr);
 
 		else
-		{
-			if (tree.nodes[right_data - 'A'] == nullptr)
-				tree.nodes[right_data - 'A'] = right_node;
-			else
-				right_node = tree.nodes[right_data - 'A'];
-
 			node->SetRight(right_node);
-		}
 	}
 
 	tree.PreOrder(tree.GetRoot());
