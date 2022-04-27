@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int visit_node[1024];
+int visit_node[1023];
 vector<int> bfs_node[10];
 
 void Bfs(int depth, int start, int end)
