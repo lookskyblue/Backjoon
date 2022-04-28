@@ -21,20 +21,16 @@ void Solve()
 	for (int i = v.size() - 1; i >= 0; i--)
 	{
 		while (s.empty() == false && s.top() <= v[i])
-		{
 			s.pop();
-		}
 
-		if (s.empty() == true)
-			ans[i] = -1;
-		else
-			ans[i] = s.top();
+		if (s.empty() == true) ans[i] = -1;
+		else ans[i] = s.top();
 
 		s.push(v[i]);
 	}
 
 	for (int i = 0; i < N; i++)
-		cout << ans[i] << " ";
+		cout << ans[i] << ' ';
 }
 
 void Input()
