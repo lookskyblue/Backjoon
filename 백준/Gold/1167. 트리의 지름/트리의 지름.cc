@@ -13,7 +13,6 @@ using namespace std;
 
 vector<pair<int, int>> v[100001];
 bool visit[100001];
-
 int long_node_idx;
 int max_len;
 
@@ -34,7 +33,6 @@ void DFS(int start, int len)
 
 void Input()
 {
-	map<int, set<int>> m;
 	int V;
 	cin >> V;
 
@@ -49,28 +47,6 @@ void Input()
 
 			v[a].push_back({ b, c });
 			v[b].push_back({ a, c });
-
-			//if (m.find(a) == m.end())
-			//{
-			//	set<int> bs, as;
-			//	bs.insert(b);
-			//	as.insert(a);
-
-			//	m.insert({ a, bs });
-			//	m.insert({ b, as });
-
-			//	v[a].push_back({ b, c });
-			//	v[b].push_back({ a, c });
-			//}
-
-			//else if (m[a].find(b) == m[a].end())
-			//{
-			//	m[a].insert(b);
-			//	m[b].insert(a);
-
-			//	v[a].push_back({ b, c });
-			//	v[b].push_back({ a, c });
-			//}
 
 			cin >> b;
 		}
