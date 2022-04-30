@@ -47,27 +47,30 @@ void Input()
 		{
 			cin >> c;
 
-			if (m.find(a) == m.end())
-			{
-				set<int> bs, as;
-				bs.insert(b);
-				as.insert(a);
+			v[a].push_back({ b, c });
+			v[b].push_back({ a, c });
 
-				m.insert({ a, bs });
-				m.insert({ b, as });
+			//if (m.find(a) == m.end())
+			//{
+			//	set<int> bs, as;
+			//	bs.insert(b);
+			//	as.insert(a);
 
-				v[a].push_back({ b, c });
-				v[b].push_back({ a, c });
-			}
+			//	m.insert({ a, bs });
+			//	m.insert({ b, as });
 
-			else if (m[a].find(b) == m[a].end())
-			{
-				m[a].insert(b);
-				m[b].insert(a);
+			//	v[a].push_back({ b, c });
+			//	v[b].push_back({ a, c });
+			//}
 
-				v[a].push_back({ b, c });
-				v[b].push_back({ a, c });
-			}
+			//else if (m[a].find(b) == m[a].end())
+			//{
+			//	m[a].insert(b);
+			//	m[b].insert(a);
+
+			//	v[a].push_back({ b, c });
+			//	v[b].push_back({ a, c });
+			//}
 
 			cin >> b;
 		}
