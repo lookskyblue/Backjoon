@@ -14,21 +14,33 @@ using namespace std;
 vector<pair<int, int>> v[1001];
 bool visit[1001];
 
-void DFS(int a, int b, int len)
+void BFS(int a, int b)
 {
-	if (a == b)
-	{
-		cout << len << '\n';
-		return;
-	}
+	queue<pair<int, int>> q;
+	
+	visit[a] = true;
 
-	for (int i = 0; i < v[a].size(); i++)
+	q.push({ a, 0 });
+
+	while (q.empty() == false)
 	{
-		if (visit[v[a][i].first] == false)
+		pair<int, int> pai = q.front();
+		q.pop();
+
+		if (b == pai.first)
 		{
-			visit[v[a][i].first] = true;
-			DFS(v[a][i].first, b, len + v[a][i].second);
-			visit[v[a][i].first] = false;
+			cout << pai.second << '\n';
+			return;
+		}
+
+		for (int i = 0; i < v[pai.first].size(); i++)
+		{
+			if (visit[v[pai.first][i].first] == false)
+			{
+				visit[v[pai.first][i].first] = true;
+				pair<int, int> new_pair = { v[pai.first][i].first, v[pai.first][i].second + pai.second };
+				q.push(new_pair);
+			}
 		}
 	}
 }
@@ -52,8 +64,7 @@ void Input()
 		int a, b;
 		cin >> a >> b;
 
-		visit[a] = true;
-		DFS(a, b, 0);
+		BFS(a, b);
 		memset(visit, false, sizeof(visit));
 	}
 }
