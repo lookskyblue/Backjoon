@@ -13,9 +13,7 @@ using namespace std;
 
 int GetDecompose(int n)
 {
-	int sum = 0;
-
-	sum += n;
+	int sum = n;
 
 	while (n != 0)
 	{
@@ -31,13 +29,13 @@ void Input()
 	int n;
 	cin >> n;
 
-	for(int count = 1; count <= 1000000; count++)
+	for(int i = 1; i < n; i++)
 	{
-		int value = GetDecompose(count);
+		int value = GetDecompose(i);
 
 		if (value == n)
 		{
-			cout << count;
+			cout << i;
 			return;
 		}
 	}
