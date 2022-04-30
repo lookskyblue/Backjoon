@@ -19,6 +19,9 @@ int max_len;
 
 void DFS(int start, int len)
 {
+	if (visit[start] == true) return;
+	visit[start] = true;
+
 	if (max_len < len)
 	{
 		max_len = len;
@@ -26,14 +29,7 @@ void DFS(int start, int len)
 	}
 
 	for (int i = 0; i < v[start].size(); i++)
-	{
-		if (visit[v[start][i].first] == false)
-		{
-			visit[v[start][i].first] = true;
 			DFS(v[start][i].first, len + v[start][i].second);
-			visit[v[start][i].first] = false;
-		}
-	}
 }
 
 void Input()
@@ -80,13 +76,11 @@ void Input()
 
 void Solve()
 {
-	visit[1] = true;
 	DFS(1, 0);
 
 	memset(visit, false, sizeof(visit));
 	max_len = 0;
 
-	visit[long_node_idx] = true;
 	DFS(long_node_idx, 0);
 
 	cout << max_len;
