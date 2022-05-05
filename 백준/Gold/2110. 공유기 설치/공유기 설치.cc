@@ -43,20 +43,15 @@ void Solve()
 	while (low <= high)
 	{
 		mid = (low + high) / 2;
-		//cout << "MID: " << mid << '\n';
 
 		if (CanAllWifi(mid) == true)
 		{
-			//cout << " Can!" << '\n';
 			low = mid + 1;
 			ans = mid;
 		}
 
 		else
-		{
-			//cout << " Can Not!" << '\n';
 			high = mid - 1;
-		}
 	}
 
 	cout << ans;
