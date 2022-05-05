@@ -16,26 +16,27 @@ int max_value = 2000000001;
 int N;
 int first_s, second_s;
 
-void BS(int value, int idx)
+void BS()
 {
-	int start = idx + 1;
-	int end = v.size();
+	int start = 0;
+	int end = v.size() - 1;
 
-	while (start < end)
+	while (start != end)
 	{
-		int mid = (start + end) / 2;
+		int sum = (v[start] + v[end]);
 
-		if (abs(value) <= v[mid])
-			end = mid;
-		else
-			start = mid + 1;
-
-		if (abs(value + v[mid]) < abs(max_value))
+		if (abs(sum) < abs(max_value))
 		{
-			max_value = value + v[mid];
-			first_s = value;
-			second_s = v[mid];
+			max_value = sum;
+			first_s = v[start];
+			second_s = v[end];
+
+			if (sum == 0)
+				break;
 		}
+
+		if (sum < 0) start++;
+		else if (sum > 0) end--;
 	}
 }
 
@@ -43,8 +44,7 @@ void Solve()
 {
 	sort(v.begin(), v.end());
 
-	for (int i = 0; i < v.size() - 1; i++)
-		BS(v[i], i);
+	BS();
 
 	cout << first_s << ' ' << second_s;
 }
