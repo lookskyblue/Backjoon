@@ -18,8 +18,6 @@ int first_s, second_s;
 
 void BS(int first_solution, int first_idx)
 {
-	//if (first_solution == -1000) cout << "First sol: " << -1000 << '\n';
-
 	int copy_first_solution = abs(first_solution);
 
 	int low = first_idx + 1;
@@ -30,23 +28,8 @@ void BS(int first_solution, int first_idx)
 	{
 		mid = (low + high) / 2;
 
-		//if (first_solution == -1000) cout << "low: " <<low <<", high: "<<high << ", mid: " << mid << ", v[mid]: " << v[mid] << '\n';
-
 		if (copy_first_solution <= v[mid])
-		{
 			high = mid;
-
-			//if (abs(first_solution + v[mid]) < abs(opt))
-			//{
-			//	opt = first_solution + v[mid];
-			//	first_s = first_solution;
-			//	second_s = v[mid];
-
-			//	//if (first_solution == -1000) cout << "opt: " << opt << '\n';
-			//	//if (first_solution == -1000) cout << "first_s: " << first_s << '\n';
-			//	//if (first_solution == -1000) cout << "second_s: " << second_s << '\n';
-			//}
-		}
 
 		else
 			low = mid + 1;
@@ -56,25 +39,8 @@ void BS(int first_solution, int first_idx)
 			opt = first_solution + v[mid];
 			first_s = first_solution;
 			second_s = v[mid];
-
-			//if (first_solution == -1000) cout << "opt: " << opt << '\n';
-			//if (first_solution == -1000) cout << "first_s: " << first_s << '\n';
-			//if (first_solution == -1000) cout << "second_s: " << second_s << '\n';
 		}
 	}
-
-	/*if (first_solution == -1000) cout << "out of while mid: " << mid << '\n';
-
-	if (abs(first_solution + v[mid]) < abs(opt))
-	{
-		opt = first_solution + v[mid];
-		first_s = first_solution;
-		second_s = v[mid];
-
-		if (first_solution == -1000) cout << "opt: " << opt << '\n';
-		if (first_solution == -1000) cout << "first_s: " << first_s << '\n';
-		if (first_solution == -1000) cout << "second_s: " << second_s << '\n';
-	}*/
 }
 
 void Solve()
