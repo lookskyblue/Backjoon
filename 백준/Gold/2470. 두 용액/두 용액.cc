@@ -12,7 +12,7 @@
 using namespace std;
 
 vector<int> v;
-int max_value = 2000000001;
+int max_value = 2000000000;
 int N;
 int first_s, second_s;
 
@@ -43,7 +43,6 @@ void BS()
 void Solve()
 {
 	sort(v.begin(), v.end());
-
 	BS();
 
 	cout << first_s << ' ' << second_s;
