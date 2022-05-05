@@ -18,8 +18,6 @@ int first_s, second_s;
 
 void BS(int first_solution, int first_idx)
 {
-	int copy_first_solution = abs(first_solution);
-
 	int low = first_idx + 1;
 	int mid = 0;
 	int high = v.size();
@@ -28,7 +26,7 @@ void BS(int first_solution, int first_idx)
 	{
 		mid = (low + high) / 2;
 
-		if (copy_first_solution <= v[mid])
+		if (abs(first_solution) <= v[mid])
 			high = mid;
 
 		else
