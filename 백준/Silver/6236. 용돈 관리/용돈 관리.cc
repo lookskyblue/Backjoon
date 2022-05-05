@@ -11,22 +11,15 @@
 
 using namespace std;
 
-int N, M;
+int N, M, ans;
 vector<int> v;
-int ans = 1000000001;
-
-int loop_cnt;
 
 bool CheckMoney(int money)
 {
-	//cout << "look cnt: " << ++loop_cnt << ", money: " << money << '\n';
-	//if (money == 500) cout << "Money: " << 500 << '\n';
-
 	int withdraw_cnt = 1;
 	int now_money = money;
-	int i = 0;
 
-	for (; i < v.size(); i++)
+	for (int i = 0; i < v.size(); i++)
 	{
 		if (v[i] <= now_money)
 			now_money -= v[i];
@@ -55,14 +48,10 @@ void Solve()
 	{
 		mid = (start + end) / 2;
 
-		bool check_state = CheckMoney(mid);
-
-		if (check_state == true) // 더 올려
-		{
+		if (CheckMoney(mid) == true) // 더 올려
 			start = mid + 1;
-		}
 
-		else
+		else // 더 내려
 		{
 			ans = mid;
 			end = mid - 1;
