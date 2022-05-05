@@ -15,48 +15,61 @@ int N, M;
 vector<int> v;
 int ans = 1000000001;
 
-int low, high;
+int loop_cnt;
 
-bool CheckMoney(int mid)
+bool CheckMoney(int money)
 {
-	int now_money = mid;
-	int cnt = 1;
+	//cout << "look cnt: " << ++loop_cnt << ", money: " << money << '\n';
+	//if (money == 500) cout << "Money: " << 500 << '\n';
 
-	for (int i = 0; i < v.size(); i++)
+	int withdraw_cnt = 1;
+	int now_money = money;
+	int i = 0;
+
+	for (; i < v.size(); i++)
 	{
-		if (now_money < v[i])
-		{
-			now_money = mid;
-			cnt++;
-		}
+		if (v[i] <= now_money)
+			now_money -= v[i];
 
-		now_money -= v[i];
+		else
+		{
+			withdraw_cnt++;
+			now_money = money;
+			i--;
+
+			if (withdraw_cnt > M)
+				break;
+		}
 	}
 
-	return cnt > M;
+	return withdraw_cnt > M;
 }
 
 void Solve()
 {
+	int start = 1;
 	int mid = 0;
+	int end = 1000000000;
 
-	while (low <= high)
+	while (start <= end)
 	{
-		mid = (low + high) / 2;
+		mid = (start + end) / 2;
 
-		bool need_more_money = CheckMoney(mid);
+		bool check_state = CheckMoney(mid);
 
-		if (need_more_money == true) // 더 올려
+		if (check_state == true) // 더 올려
 		{
-			low = mid + 1;
-			ans = mid;
+			start = mid + 1;
 		}
 
 		else
-			high = mid - 1;
+		{
+			ans = mid;
+			end = mid - 1;
+		}
 	}
 
-	cout << mid;
+	cout << ans;
 }
 
 void Input()
@@ -69,9 +82,6 @@ void Input()
 		cin >> x;
 
 		v.push_back(x);
-
-		low = max(low, x);
-		high += x;
 	}
 
 	Solve();
