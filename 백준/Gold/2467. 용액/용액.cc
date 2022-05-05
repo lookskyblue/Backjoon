@@ -13,18 +13,17 @@ using namespace std;
 
 int N;
 vector<int> v;
-int opt = 2000000000;
 int first_s, second_s;
+int opt = 2000000000;
 
 void BS(int first_solution, int first_idx)
 {
 	int low = first_idx + 1;
-	int mid = 0;
 	int high = v.size();
 
 	while (low < high)
 	{
-		mid = (low + high) / 2;
+		int mid = (low + high) / 2;
 
 		if (abs(first_solution) <= v[mid])
 			high = mid;
