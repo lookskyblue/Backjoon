@@ -14,7 +14,7 @@ using namespace std;
 int N;
 vector<int> v;
 int first_s, second_s;
-int opt = 2000000000;
+int opt = 1999999999;
 
 void BS(int first_solution, int first_idx)
 {
