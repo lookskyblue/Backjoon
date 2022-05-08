@@ -15,7 +15,6 @@ using namespace std;
 int N, D;
 int min_dist[10001];
 vector<pair<int, int>> edge[10001];
-bool visit[10001];
 
 void Solve()
 {
@@ -29,7 +28,6 @@ void Solve()
 		int current_dist = pq.top().first;
 
 		pq.pop();
-		visit[current_node] = true;
 
 		if (min_dist[current_node] < current_dist) continue;
 
@@ -38,15 +36,10 @@ void Solve()
 			int next_node = edge[current_node][i].second;
 			int next_dist = edge[current_node][i].first;
 
-			//cout << "NEXT NODE: " << next_node << ", DIST: " << next_dist << '\n';
-
-			if (visit[next_node] == false && min_dist[next_node] > current_dist + next_dist)
+			if (min_dist[next_node] > current_dist + next_dist)
 			{
 				min_dist[next_node] = current_dist + next_dist;
 				pq.push({ min_dist[next_node], next_node });
-				//visit[next_node] = true;
-
-				//cout << "NEXT NODE: " << next_node << ", DIST: " << current_dist + next_dist << '\n';
 			}
 		}
 	}
@@ -68,11 +61,8 @@ void Input()
 
 		edge[a].push_back({ c, b });
 
-		if (b <= D)
-		{
 			int dist = D - b;
 			edge[b].push_back({ dist, D });
-		}
 
 		if (a <= D)
 		{
@@ -97,7 +87,6 @@ void Input()
 	}
 
 	for (int i = 0; i < 10001; i++)
-		//min_dist[i] = i;
 		min_dist[i] = INF;
 
 	min_dist[D] = D;
