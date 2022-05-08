@@ -59,31 +59,15 @@ void Input()
 		if (b > D) continue;
 		if (b - a <= c) continue;
 
-		edge[a].push_back({ c, b });
-
-			int dist = D - b;
-			edge[b].push_back({ dist, D });
-
-		if (a <= D)
+		for (int j = 0; j < 10001; j++)
 		{
-			for (int j = 0; j < 10001; j++)
-			{
-				if (a - j > 0)
-				{
-					int dist = a - j;
-					edge[j].push_back({ dist, a });
-				}
-
-				else if (a - j < 0)
-				{
-					int dist = j - a;
-					edge[a].push_back({ dist, j });
-				}
-			}
-
-			int dist = D - a;
-			edge[a].push_back({ dist, D });
+			if (a - j > 0) edge[j].push_back({ a - j, a });
+			else if (a - j < 0) edge[a].push_back({ j - a, j });
+			else edge[a].push_back({ c, b });
 		}
+
+		edge[a].push_back({ D - a, D });
+		edge[b].push_back({ D - b, D });
 	}
 
 	for (int i = 0; i < 10001; i++)
