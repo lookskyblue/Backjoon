@@ -38,22 +38,10 @@ void Solve()
 
 			if (0 < nx && nx <= M && 0 < ny && ny <= N)
 			{
-				if (maze[nx][ny] == 1)
+				if (dp[nx][ny] > dp[x][y] + maze[nx][ny])
 				{
-					if (dp[nx][ny] > dp[x][y] + 1)
-					{
-						dp[nx][ny] = dp[x][y] + 1;
-						pq.push({ nx, ny });
-					}
-				}
-
-				else if (maze[nx][ny] == 0)
-				{
-					if (dp[nx][ny] > dp[x][y])
-					{
-						dp[nx][ny] = dp[x][y];
-						pq.push({ nx, ny });
-					}
+					dp[nx][ny] = dp[x][y] + maze[nx][ny];
+					pq.push({ nx, ny });
 				}
 			}
 		}
