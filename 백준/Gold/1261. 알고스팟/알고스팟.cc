@@ -8,21 +8,22 @@
 #include <vector>
 #include <map>
 #include <cstring>
-#define INF 987654321;
+#define INF 987654321
+#define MAX 101
 
 using namespace std;
 
 int N, M;
-int maze[100][100];
-int dp[100][100];
+int maze[MAX][MAX];
+int dp[MAX][MAX];
 int dx[4] = { 0, -1, 0, 1 };
 int dy[4] = { -1, 0, 1, 0 };
 
 void Solve()
 {
 	queue<pair<int, int>> pq;
-	pq.push({ 0, 0 });
-	dp[0][0] = 0;
+	pq.push({ 1, 1 });
+	dp[1][1] = 0;
 
 	while (pq.empty() == false)
 	{
@@ -35,7 +36,7 @@ void Solve()
 			int nx = x + dx[i];
 			int ny = y + dy[i];
 
-			if (0 <= nx && nx < M && 0 <= ny && ny < N)
+			if (0 < nx && nx <= M && 0 < ny && ny <= N)
 			{
 				if (maze[nx][ny] == 1)
 				{
@@ -58,28 +59,24 @@ void Solve()
 		}
 	}
 
-	cout << dp[M - 1][N - 1];
+	cout << dp[M][N];
 }
 
 void Input()
 {
 	cin >> N >> M;
 
-	for (int i = 0; i < M; i++)
+	for (int i = 1; i <= M; i++)
 	{
 		string x;
 		cin >> x;
 
 		for (int j = 0; j < x.size(); j++)
 		{
-			maze[i][j] = x[j] - '0';
-			dp[i][j] = INF;
+			maze[i][j+1] = x[j] - '0';
+			dp[i][j+1] = INF;
 		}
 	}
-
-	//for (int i = 1; i <= M; i++)
-	//	for (int j = 1; j <= N; j++)
-	//		dp[i][j] = INF;
 }
 
 int main()
