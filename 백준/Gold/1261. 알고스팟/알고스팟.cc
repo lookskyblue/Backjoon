@@ -1,0 +1,95 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <queue>
+#include <deque>
+#include <stack>
+#include <set>
+#include <vector>
+#include <map>
+#include <cstring>
+#define INF 987654321;
+
+using namespace std;
+
+int N, M;
+int maze[100][100];
+int dp[100][100];
+int dx[4] = { 0, -1, 0, 1 };
+int dy[4] = { -1, 0, 1, 0 };
+
+void Solve()
+{
+	queue<pair<int, int>> pq;
+	pq.push({ 0, 0 });
+	dp[0][0] = 0;
+
+	while (pq.empty() == false)
+	{
+		int x = pq.front().first;
+		int y = pq.front().second;
+		pq.pop();
+
+		for (int i = 0; i < 4; i++)
+		{
+			int nx = x + dx[i];
+			int ny = y + dy[i];
+
+			if (0 <= nx && nx < M && 0 <= ny && ny < N)
+			{
+				if (maze[nx][ny] == 1)
+				{
+					if (dp[nx][ny] > dp[x][y] + 1)
+					{
+						dp[nx][ny] = dp[x][y] + 1;
+						pq.push({ nx, ny });
+					}
+				}
+
+				else if (maze[nx][ny] == 0)
+				{
+					if (dp[nx][ny] > dp[x][y])
+					{
+						dp[nx][ny] = dp[x][y];
+						pq.push({ nx, ny });
+					}
+				}
+			}
+		}
+	}
+
+	cout << dp[M - 1][N - 1];
+}
+
+void Input()
+{
+	cin >> N >> M;
+
+	for (int i = 0; i < M; i++)
+	{
+		string x;
+		cin >> x;
+
+		for (int j = 0; j < x.size(); j++)
+		{
+			maze[i][j] = x[j] - '0';
+			dp[i][j] = INF;
+		}
+	}
+
+	//for (int i = 1; i <= M; i++)
+	//	for (int j = 1; j <= N; j++)
+	//		dp[i][j] = INF;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+
+	Input();
+	Solve();
+
+	return 0;
+}
