@@ -24,10 +24,7 @@ void Solve()
 		string str_rev = str;
 		reverse(str_rev.begin(), str_rev.end());
 
-		if (str_rev == str)
-			cout << "yes" << '\n';
-		else
-			cout << "no" << '\n';
+		cout << (str_rev == str ? "yes" : "no") << '\n';
 	}
 }
 
