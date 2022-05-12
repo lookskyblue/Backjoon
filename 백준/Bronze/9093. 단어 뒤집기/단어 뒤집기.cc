@@ -34,15 +34,14 @@ void ReversePrint(string str)
 
 void Solve()
 {
-	string T;
-	getline(cin, T);
-	int t = stoi(T);
+	int T;
+	cin >> T;
+	cin.ignore();
 
-	while (t--)
+	while (T--)
 	{
 		string str;
 		getline(cin, str);
-
 		ReversePrint(str);
 	}
 }
