@@ -17,38 +17,28 @@ void Solve()
 	string str;
 	cin >> str;
 
-	stack<int> oct;
+	stack<int> bin;
 
 	for (int i = str.size() - 1; i >= 0; i--)
 	{
 		int digit = str[i] - '0';
-
 		int push_cnt = 0;
 
 		while (digit != 0)
 		{
-			oct.push(digit % 2);
+			bin.push(digit % 2);
 			digit /= 2;
 			push_cnt++;
 		}
 
-		for (; push_cnt < 3; push_cnt++)
-			oct.push(0);
+		for (; push_cnt < 3; push_cnt++) bin.push(0);
 	}
 
-	bool is_first_zero = true;
-
-	while (oct.empty() == false)
+	while (bin.size() != 1 && bin.empty() == false && bin.top() == 0) bin.pop();
+	while (bin.empty() == false)
 	{
-		if (oct.size() != 1 && oct.top() == 1) is_first_zero = false;
-		if (oct.size() != 1 && oct.top() == 0 && is_first_zero == true)
-		{
-			oct.pop();
-			continue;
-		}
-
-		cout << oct.top();
-		oct.pop();
+		cout << bin.top();
+		bin.pop();
 	}
 }
 
