@@ -27,19 +27,14 @@ void Solve()
 
 		if (ans[ans.length()-1] == expl[expl.length() - 1])
 		{
+			if (ans.length() < expl.length()) continue;
+
 			int cnt = 1;
-			int ans_cnt = ans.length() - 2;
 
 			for (int j = expl.length() - 2; j >= 0; j--)
 			{
-				if (ans_cnt >= 0 && expl[j] == ans[ans_cnt])
-				{
-					cnt++;
-					ans_cnt--;
-				}
-
-				else
-					break;
+				if (expl[j] == ans[ans.length() - (expl.length()-j)]) cnt++;
+				else break;
 			}
 
 			if (cnt == expl.length())
@@ -50,17 +45,8 @@ void Solve()
 		}
 	}
 
-
-	int expl_len = expl.length();
-	size_t pos = ans.find(expl);
-
-	while (pos != string::npos)
-	{
-		ans.erase(pos, expl_len);
-		pos = ans.find(expl);
-	}
-
 	cout << (ans.size() == 0 ? "FRULA" : ans);
+	return;
 }
 
 int main()
