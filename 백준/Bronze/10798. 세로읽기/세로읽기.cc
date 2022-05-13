@@ -18,13 +18,8 @@ char alpha[5][15];
 void Solve()
 {
 	for (int j = 0; j < 15; j++)
-	{
 		for (int i = 0; i < 5; i++)
-		{
-			if (alpha[i][j] != 0)
-				cout << alpha[i][j];
-		}
-	}
+			if (alpha[i][j] != 0) cout << alpha[i][j];
 }
 
 void Input()
