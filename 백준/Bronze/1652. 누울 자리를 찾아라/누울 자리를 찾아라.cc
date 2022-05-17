@@ -66,26 +66,17 @@ void Solve()
 
 		for (int j = 0; j < N; j++)
 		{
-			if (room[j][i] == '.')
-			{
-				empty_cnt++;
-			}
+			if (room[j][i] == '.') empty_cnt++;
 
 			else
 			{
-				if (empty_cnt >= 2)
-				{
-					colum_cnt++;
-				}
-
+				if (empty_cnt >= 2) colum_cnt++;
+				
 				empty_cnt = 0;
 			}
 		}
 
-		if (empty_cnt >= 2)
-		{
-			colum_cnt++;
-		}
+		if (empty_cnt >= 2) colum_cnt++;
 	}
 
 	cout << row_cnt << ' ' << colum_cnt;
