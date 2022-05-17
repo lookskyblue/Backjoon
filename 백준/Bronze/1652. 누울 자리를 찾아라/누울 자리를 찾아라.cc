@@ -36,26 +36,17 @@ void Solve()
 
 		for (int j = 0; j < N; j++)
 		{
-			if (room[i][j] == '.')
-			{
-				empty_cnt++;
-			}
+			if (room[i][j] == '.') empty_cnt++;
 
 			else
 			{
-				if (empty_cnt >= 2)
-				{
-					row_cnt++;
-				}
+				if (empty_cnt >= 2) row_cnt++;
 
 				empty_cnt = 0;
 			}
 		}
 
-		if (empty_cnt >= 2)
-		{
-			row_cnt++;
-		}
+		if (empty_cnt >= 2) row_cnt++;
 	}
 
 	int colum_cnt = 0;
