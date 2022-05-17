@@ -30,11 +30,7 @@ void Solve()
 	{
 		if (IsPalen(str.substr(i, str.length() - i)) == true)
 		{
-			for (int j = i-1; j >= 0; j--)
-				str.push_back(str[j]);
-
-			cout << str.length();
-
+			cout << str.length() + i;
 			return;
 		}
 	}
