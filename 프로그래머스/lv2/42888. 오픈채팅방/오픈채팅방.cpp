@@ -17,7 +17,6 @@ vector<string> solution(vector<string> record) {
         vector<string> divied_record;
         string tmp = record[i];
         char* str = &tmp[0];
-        
         char* ptr = strtok(str, " ");
 
         while (ptr != NULL)
@@ -29,7 +28,6 @@ vector<string> solution(vector<string> record) {
         if (divied_record[0] == "Enter")
         {
             m[divied_record[1]] = pair<bool, string>(true, divied_record[2]);
-            //cout << "들어왔다" << divied_record[2] << '\n';
             id_q.push(make_pair(divied_record[1], true));
         }
         else if(divied_record[0] == "Leave")
@@ -39,20 +37,15 @@ vector<string> solution(vector<string> record) {
         }
         else
         {
-            //cout << "바뀌었다" << divied_record[2] << '\n';
             m[divied_record[1]].second = divied_record[2];
         }
     }
 
     while(id_q.empty() == false)
     {
-        string name = m[id_q.front().first].second;
-        bool state = id_q.front().second;
+        string result = m[id_q.front().first].second + "님이 " + ((id_q.front().second == true) ? "들어왔습니다." : "나갔습니다.");
+
         id_q.pop();
-
-        string result = name + "님이 ";
-        result += ((state == true) ? "들어왔습니다." : "나갔습니다.");
-
         answer.push_back(result);
     }
 
