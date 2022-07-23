@@ -1,109 +1,83 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<vector>
+#include<queue>
+#include<stack> 
 #include<cstring>
-#include<stack>
+#include<map>
+#include<algorithm>
 using namespace std;
 
-stack<string> s;
-
-void DivideStr(string str, string& u, string& v)
+void GetBalanceStr(string& u, string& v, string p)
 {
-    int left_count = 0;
-    int right_count = 0;
-    int i = 0;
+    int right_cnt = 0;
+    int left_cnt = 0;
 
-    for (i = 0; i < str.size(); i++)
+    for (int i = 0; i < p.size(); i++)
     {
-        if (str[i] == '(') left_count++;
-        if (str[i] == ')') right_count++;
-        if (left_count == right_count) break;
+        if (p[i] == '(') right_cnt++;
+        if (p[i] == ')') left_cnt++;
+        if (right_cnt == left_cnt)
+        {
+            u = p.substr(0, i + 1);
+            v = p.substr(i + 1, p.size() - i);
+            break;
+        }
     }
-
-    u = str.substr(0, i + 1);
-    v = str.substr(i + 1, str.size());
-
-    //cout << "U: " << u << '\n';
-    //cout << "V: " << v << '\n';
 }
 
-bool IsCorrectStr(string u)
+bool IsRightStr(string p)
 {
     stack<char> s;
 
-    for (int i = 0; i < u.size(); i++)
+    s.push(p[0]);
+
+    for (int i = 1; i < p.size(); i++)
     {
-        if (u[i] == ')')
+        if (p[i] == '(') s.push(p[i]);
+        if (p[i] == ')')
         {
-            if (s.empty() == true)
-            {
-                return false;
-            }
-            else
-            {
-                if (s.top() == u[i])
-                {
-                    return false;
-                }
-
-                else
-                {
-                    s.pop();
-                }
-            }
-        }
-
-        else
-        {
-            s.push(u[i]);
+            if (s.empty() == true) return false;
+            if (s.top() == ')') return false;
+            if (s.top() == '(') s.pop();
         }
     }
 
     return s.empty() == true ? true : false;
 }
 
-void RemoveAndReverse(string& u)
+void TrimStr(string& p)
 {
-    // u의 사이즈가 안전한지 고려해야할까?
+    p.erase(p.begin());
+    p.erase(p.end() - 1);
 
-    u.erase(u.begin());
-    u.erase(u.size() - 1);
-
-    for (int i = 0; i < u.size(); i++)
+    for (int i = 0; i < p.size(); i++)
     {
-        u[i] = (u[i] == '(' ? ')' : '(');
+        p[i] = (p[i] == '(' ? ')' : '(');
     }
 }
 
-string Solve(string str)
+string Solve(string p)
 {
-    if (str == "") return str; // 1.
-
-    string u, v;
-    DivideStr(str, u, v); // 2.
+    if (p.empty() == true) return p; // 1.
     
-    if (IsCorrectStr(u) == true) // 3. u가 올바른 괄호 문자열이라면
+    string u, v;
+
+    GetBalanceStr(u, v, p); // 2.
+
+    if (IsRightStr(u) == true) // 3.
     {
-        //cout << "U는 올바른 괄호 문자열" << "\n";
         return u + Solve(v);
     }
-    else // 4. u가 올바른 괄호 문자열이 아니라면
+
+    else
     {
-        string tmp = "("; // 4.1
-        tmp += Solve(v); // 4.2
-        tmp += ")"; // 4.3
-
-        RemoveAndReverse(u); // 4.4
-        tmp += u;
-
-        return tmp;
+        string tmp = '(' + Solve(v) + ')';
+        TrimStr(u);
+        return tmp + u;
     }
 }
 
 string solution(string p) {
-    string answer = "";
-
-    answer = Solve(p);
-        
-    return answer;
+    return Solve(p);
 }
