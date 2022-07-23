@@ -2,51 +2,54 @@
 #include<iostream>
 #include<vector>
 #include<queue>
-#include<map>
 #include<cstring>
-
+#include<map>
+#include<algorithm>
 using namespace std;
 
 vector<string> solution(vector<string> record) {
     vector<string> answer;
-    map<string, pair<bool, string>> m;
-    queue<pair<string, bool>> id_q;
+    map<string, string> m;
+    queue<pair<string, bool>> q;
 
     for (int i = 0; i < record.size(); i++)
     {
-        vector<string> divied_record;
-        string tmp = record[i];
-        char* str = &tmp[0];
+        vector<string> each_log;
+        string full_log = record[i];
+
+        char* str = &full_log[0];
         char* ptr = strtok(str, " ");
 
         while (ptr != NULL)
         {
-            divied_record.push_back(ptr);
+            each_log.push_back(ptr);
             ptr = strtok(NULL, " ");
         }
 
-        if (divied_record[0] == "Enter")
+        if (each_log[0] == "Enter")
         {
-            m[divied_record[1]] = pair<bool, string>(true, divied_record[2]);
-            id_q.push(make_pair(divied_record[1], true));
+            m[each_log[1]] = each_log[2];
+            q.push(make_pair(each_log[1], true));
         }
-        else if(divied_record[0] == "Leave")
+
+        if (each_log[0] == "Leave")
         {
-            m[divied_record[1]].first = false;
-            id_q.push(make_pair(divied_record[1], false));
+            q.push(make_pair(each_log[1], false));
         }
-        else
+
+        if (each_log[0] == "Change")
         {
-            m[divied_record[1]].second = divied_record[2];
+            m[each_log[1]] = each_log[2];
         }
     }
 
-    while(id_q.empty() == false)
+    while (q.empty() == false)
     {
-        string result = m[id_q.front().first].second + "님이 " + ((id_q.front().second == true) ? "들어왔습니다." : "나갔습니다.");
-
-        id_q.pop();
-        answer.push_back(result);
+        string tmp = m[q.front().first] + "님이 ";
+        tmp += (q.front().second == true ? "들어왔습니다." : "나갔습니다.");
+        answer.push_back(tmp);
+        
+        q.pop();
     }
 
     return answer;
