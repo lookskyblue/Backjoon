@@ -8,7 +8,7 @@
 using namespace std;
 
 int map[100][100];
-pair<int, int> parent[100][100];
+bool visited[100][100];
 int answer;
 int dir_x[4] = { -1, 0, 1, 0 };
 int dir_y[4] = { 0, -1, 0, 1 };
@@ -19,7 +19,7 @@ void BFS(int m, int n, int max_m, int max_n)
     s.push({ m, n });
     
     map[m][n] = 0;
-    parent[m][n] = { m,n };
+    visited[m][n] = true;
 
     bool is_find_exit = false;
 
@@ -31,8 +31,8 @@ void BFS(int m, int n, int max_m, int max_n)
 
         if (now_m == max_m - 1 && now_n == max_n - 1)
         {
-            is_find_exit = true;
-            break;
+            answer = map[now_m][now_n] + 1;
+            return;
         }
 
         for (int i = 0; i < 4; i++)
@@ -40,32 +40,19 @@ void BFS(int m, int n, int max_m, int max_n)
             int nm = now_m + dir_y[i];
             int nn = now_n + dir_x[i];
 
-            if (0 <= nm && nm < max_m && 0 <= nn && nn < max_n && map[nm][nn] == 1)
+            if (0 <= nm && nm < max_m && 0 <= nn && nn < max_n)
             {
-                s.push({ nm, nn });
-                map[nm][nn] = 0;
-                parent[nm][nn] = { now_m, now_n };
+                if (map[nm][nn] != 0 && visited[nm][nn] == false)
+                {
+                    s.push({ nm, nn });
+                    map[nm][nn] = map[now_m][now_n] + 1;
+                    visited[nm][nn] = true;
+                }
             }
         }
     }
 
-    if (is_find_exit == true)
-    {
-        int x = max_n - 1;
-        int y = max_m - 1;
-        answer = 1;
-
-        while ((x == 0 && y == 0) == false)
-        {
-            answer++;
-         
-            pair<int, int> p = parent[y][x];
-            y = p.first;
-            x = p.second;
-        }
-    }
-
-    else answer = -1;
+    answer = -1;
 }
 
 int solution(vector<vector<int> > maps)
