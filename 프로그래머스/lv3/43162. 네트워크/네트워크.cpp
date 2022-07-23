@@ -9,15 +9,15 @@ using namespace std;
 
 bool visited[200];
 
-void DFS(int idx, vector<vector<int>> computers)
+void DFS(int from, vector<vector<int>> computers)
 {
-    if (visited[idx] == true) return;
-    else visited[idx] = true;
+    if (visited[from] == true) return;
+    else visited[from] = true;
 
-    for (int i = 0; i < computers[idx].size(); i++)
+    for (int to = 0; to < computers[from].size(); to++)
     {
-        if (computers[idx][i] == 1)
-            DFS(i, computers);
+        if (computers[from][to] == 1)
+            DFS(to, computers);
     }
 }
 
@@ -25,11 +25,11 @@ int solution(int n, vector<vector<int>> computers)
 {
     int answer = 0;
     
-    for (int i = 0; i < computers.size(); i++)
+    for (int from = 0; from < computers.size(); from++)
     {
-        if (visited[i] == false)
+        if (visited[from] == false)
         {
-            DFS(i, computers);
+            DFS(from, computers);
             answer++;
         }
     }
