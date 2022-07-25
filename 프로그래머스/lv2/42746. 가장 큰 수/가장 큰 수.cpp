@@ -6,23 +6,24 @@
 #include<algorithm>
 using namespace std;
 
-bool cmp(int a, int b)
+bool cmp(string &a, string &b)
 {
-    string as = to_string(a);
-    string bs = to_string(b);
-
-    return as + bs > bs + as;
+    return (a + b > b + a);
 }
 
 string solution(vector<int> numbers) {
     string answer = "";
-
-    sort(numbers.begin(), numbers.end(), cmp);
-
+    vector<string> v;
+    
     for (int i = 0; i < numbers.size(); i++)
+        v.push_back(to_string(numbers[i]));
+
+    sort(v.begin(), v.end(), cmp);
+
+    for (int i = 0; i < v.size(); i++)
     {
-        if (numbers.at(0) == 0) return "0";
-        answer += to_string(numbers[i]);
+        if (v.at(0) == "0") return "0";
+        answer += v[i];
     }
 
     return answer;
