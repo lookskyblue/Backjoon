@@ -29,26 +29,15 @@ void Solve()
 		B.push_back(x);
 	}
 
-	vector<int> tmp_b = B;
-	sort(tmp_b.begin(), tmp_b.end());
-	reverse(tmp_b.begin(), tmp_b.end());
+	sort(B.begin(), B.end());
+	reverse(B.begin(), B.end());
 	sort(A.begin(), A.end());
-
-	map<int, stack<int>> m;
-
-	for (int i = 0; i < N; i++)
-	{
-		m[tmp_b[i]].push(A[i]);
-	}
 
 	int sum = 0;
 
 	for (int i = 0; i < N; i++)
 	{
-		int a = m[tmp_b[i]].top();
-		m[tmp_b[i]].pop();
-
-		sum += tmp_b[i] * a;
+		sum += A[i] * B[i];
 	}
 
 	cout << sum << '\n';
