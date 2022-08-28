@@ -19,8 +19,7 @@ void Solve()
 	{
 		for (int j = 0; j < str.length() && (j+i) < str.length(); j++)
 		{
-			string tmp = str.substr(j, i + 1);
-			strSet.insert(tmp);
+			strSet.insert(str.substr(j, i + 1));
 		}
 	}
 
