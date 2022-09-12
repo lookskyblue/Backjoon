@@ -1,55 +1,62 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<vector>
-#include<string>
 #include<algorithm>
+#include<string>
 
 using namespace std;
 
-struct people
+struct Person
 {
 	string name;
-	int y;
-	int m;
-	int d;
+	int day;
+	int month;
+	int year;
 };
 
-bool compare(people a, people b)
+bool compare(const Person& a, const Person& b)
 {
-	if (a.y < b.y) return true;
-	else if (a.y > b.y) return false;
+	if (a.year < b.year) return true;
+	else if (a.year > b.year) return false;
 	else
 	{
-		if (a.m < b.m) return true;
-		else if (a.m > b.m) return false;
+		if (a.month < b.month) return true;
+		else if (a.month > b.month) return false;
 		else
 		{
-			if (a.d <= b.d) return true;
+			if (a.day < b.day) return true;
 			else return false;
 		}
 	}
 }
 
-int main()
+void Solve()
 {
-	vector<people> vec;
-	int n;
-	cin >> n;
+	int N;
+	cin >> N;
 
-	for (int i = 0; i < n; i++)
+	vector<Person> people;
+	people.reserve(N);
+
+	for (int i = 0; i < N; i++)
 	{
-		people p;
-		cin >> p.name;
-		cin >> p.d;
-		cin >> p.m;
-		cin >> p.y;
+		Person person = Person();
+		cin >> person.name;
+		cin >> person.day >> person.month >> person.year;
 
-		vec.push_back(p);
+		people.push_back(person);
 	}
 
-	sort(vec.begin(), vec.end(), compare);
+	sort(people.begin(), people.end(), compare);
 
-	cout << vec[vec.size()-1].name << '\n';
-	cout << vec.begin()->name << '\n';
+	cout << people[N-1].name << '\n' << people[0].name;
+}
 
-	return 0;
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+
+	Solve();
 }
