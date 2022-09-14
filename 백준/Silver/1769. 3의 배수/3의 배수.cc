@@ -17,9 +17,7 @@ void Solve()
 		int sum = 0;
 
 		for(int i = 0; i < Y.size(); i++)
-		{
 			sum += Y[i] - '0';
-		}
 
 		Y = to_string(sum);
 
