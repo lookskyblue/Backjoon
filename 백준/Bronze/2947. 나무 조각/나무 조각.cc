@@ -2,9 +2,9 @@
 
 int main()
 {
-	int b[6] = { 0 };
+	int b[5] = { 0 };
 	for (int i = 0; i < 5; i++) scanf("%d", &b[i]);
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			if (b[j] > b[j + 1]) {
 				int temp = b[j];
