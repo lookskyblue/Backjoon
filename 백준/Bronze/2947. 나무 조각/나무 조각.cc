@@ -1,60 +1,19 @@
-#include <iostream>
-#include <algorithm>
-#include <string>
-#include <queue>
-#include <vector>
-
-using namespace std;
-
-int pieceArr[5];
-
-void Solve()
-{
-	for (int i = 0; i < 5; i++)
-	{
-		cin >> pieceArr[i];
-	}
-
-	bool needLoop = true;
-
-	while (needLoop)
-	{
-		needLoop = false;
-
-		for (int i = 0; i < 4; i++)
-		{
-			if (pieceArr[i] > pieceArr[i + 1])
-			{
-				int temp = pieceArr[i];
-				pieceArr[i] = pieceArr[i + 1];
-				pieceArr[i + 1] = temp;
-
-				for (int j = 0; j < 5; j++)
-				{
-					cout << pieceArr[j] << " ";
-				}
-
-				cout << '\n';
-			}
-		}
-
-		for (int i = 0; i < 5; i++)
-		{
-			if (pieceArr[i] != i+1)
-			{
-				needLoop = true;
-				break;
-			}
-		}
-	}
-}
+#include <stdio.h>
 
 int main()
 {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-
-	Solve();
-
+	int b[6] = { 0 };
+	for (int i = 0; i < 5; i++) scanf("%d", &b[i]);
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 4; j++) {
+			if (b[j] > b[j + 1]) {
+				int temp = b[j];
+				b[j] = b[j + 1];
+				b[j + 1] = temp;
+				for (int k = 0; k < 5; k++) printf("%d ", b[k]);
+				printf("\n");
+			}
+		}
+	}
 	return 0;
 }
