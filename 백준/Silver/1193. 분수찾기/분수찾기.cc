@@ -20,23 +20,12 @@ void Solve()
 
 	while (loopCount != x)
 	{
-		if (leftDir)
-		{
-			d++;
+		if (leftDir) d++;
+		else n++;
 
-			if (++loopCount == x)
-			{
-				break;
-			}
-		}
-		else
+		if (++loopCount == x)
 		{
-			n++;
-
-			if (++loopCount == x)
-			{
-				break;
-			}
+			break;
 		}
 
 		int start = leftDir == true ? d : n;
