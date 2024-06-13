@@ -30,7 +30,6 @@ void Solve()
 
 		int start = leftDir == true ? d : n;
 		int end = 1;
-		bool isFind = false;
 
 		for (start; start != end; start--)
 		{
@@ -47,14 +46,8 @@ void Solve()
 
 			if (++loopCount == x)
 			{
-				isFind = true;
 				break;
 			}
-		}
-
-		if (isFind)
-		{
-			break;
 		}
 
 		leftDir = !leftDir;
