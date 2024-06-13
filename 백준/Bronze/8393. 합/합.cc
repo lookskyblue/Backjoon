@@ -10,14 +10,10 @@ using namespace std;
 void Solve()
 {
 	int x;
-	int result = 0;
 
 	cin >> x;
 
-	for (int i = 1; i <= x; i++)
-	{
-		result += i;
-	}
+	int result = (x * (1 + x)) / 2;
 
 	cout << result;
 }
